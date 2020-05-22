@@ -85,8 +85,14 @@ foreach my $room_id (keys %catalog) {
 
   foreach my $time_span (@$time_spans) {
     my ($span_start, $span_end) = @$time_span;
+
+    # kick out if team's start/end occurs in a room's schedule
     next ROOM if $team_start > $span_start && $team_start < $span_end;
     next ROOM if $team_end   > $span_start && $team_end   < $span_end;
+
+    # kick out if room's start/end occurs in a team's schedule
+    next ROOM if $span_start > $team_start && $span_start < $team_end;
+    next ROOM if $span_end   > $team_start && $span_end   < $team_end;
   }
 
   # score the eligible room
@@ -99,6 +105,7 @@ my @best_rooms
   = grep { $room_score{$_} == $best_score }
     sort { $a <=> $b }
     keys %room_score;
+exit(0) if !@best_rooms;
 
 my $room_id = $best_rooms[0];
 print join('.', $catalog{$room_id}{floor}, $room_id) . "\n";
