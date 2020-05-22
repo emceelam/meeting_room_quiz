@@ -16,7 +16,7 @@ perl meeting_room.t
 
 ## how you solved the problem
 
-We scan the list of rooms, ignoring any which collide with the start/end times we wish to schedule. Also we ignore any rooms that are too small for the team. The remaining rooms are valid for scheduling, but to differentiate we score them based on how many floors we need to walk to get to the room. Sometimes, we get two rooms that are equally good, in which case, we pick one based on lexical sorting of the room id.
+We scan the list of rooms, ignoring any which collide with the start/end times we wish to schedule. Also we ignore any rooms that are too small for the team. The remaining rooms are valid for scheduling, but to differentiate we score them based on how many floors we need to walk to get to the room. Sometimes, we get two rooms that are equally good, in which case, we pick one based on sorting of the room id.
 
 
 ## how it would behave based on the different parameters:
