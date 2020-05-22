@@ -96,16 +96,21 @@ foreach my $room_id (keys %catalog) {
   }
 
   # score the eligible room
-  my $score = abs($team_floor - $room_floor);
+  my $score = abs($team_floor - $room_floor);  # distance traveled
   $room_score{$room_id} = $score;
 }
 
+# least distance travelled determines best room
 my $best_score = min(values %room_score);
 my @best_rooms
   = grep { $room_score{$_} == $best_score }
     sort { $a <=> $b }
     keys %room_score;
+
+# quit if no rooms are available
 exit(0) if !@best_rooms;
 
+# sometimes we have two equally good rooms
+# we have to pick one
 my $room_id = $best_rooms[0];
 print join('.', $catalog{$room_id}{floor}, $room_id) . "\n";
