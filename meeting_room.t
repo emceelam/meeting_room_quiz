@@ -17,6 +17,9 @@ tie %input_to_expected, 'Tie::IxHash';
   # team is too big for any room
   '20,8,10:30,11:30' => '',
 
+  # need the biggest room
+  '9,8,10:30,11:30' => '9.511',
+
   # 1st floor
   '5,1,10:30,11:30' => '7.11',
 
